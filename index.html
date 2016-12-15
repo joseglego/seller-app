@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="myController">
+      <div id="list" class="">
+        <div class="col-xs-12" ng-repeat="item in items">
+          <div class="col-xs-8">
+            <h3>{{item.name}}</h3>
+            <h4>{{item.price}} Bs.</h4>
+          </div>
+          <div class="col-xs-4">
+            <h2>{{item.amount}}</h2>
+          </div>
+          <div class="col-xs-12 text-center btn-group">
+            <div class="col-xs-4 btn btn-default" ng-click="set(item, 0)">
+              0
+            </div>
+            <div class="col-xs-4 btn btn-danger" ng-click="set(item, item.amount-1)">
+              -
+            </div>
+            <div class="col-xs-4 btn btn-success" ng-click="set(item, item.amount+1)">
+              +
+            </div>
+            <div class="col-xs-12">
+              <hr>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="navbar navbar-default navbar-fixed-bottom text-center">
+        <h3>Total:</h3>
+        <h2>{{total}} Bs.</h2>
+
+        <div id="sold" class="btn btn-success" ng-click="new()">
+          Vendido!
+        </div>
+      </nav>
+    </div>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/ng-lodash/build/ng-lodash.min.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+html {
+  margin-bottom: 130px;
+}
+
+#list h2, #list h3, #list h4 {
+  margin-top: 10px;
+}
+
+#list h2 {
+  height: 70px;
+  line-height: 70px;
+  vertical-align: middle;
+  margin: 4px 0px;
+  text-align: center;
+  border-left: 1px solid #dedede;
+  font-size: 40px;
+}
+
+#list h4 {
+  color: #bebebe;
+}
+
+#sold {
+  margin-bottom:10px;
+}
