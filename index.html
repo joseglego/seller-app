@@ -2,10 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8"/>
-    <title>Document</title>
+    <title>Seller App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="other_components/icons/flaticon.css">
     <link rel="stylesheet" href="css/main.css">
   </head>
@@ -13,39 +15,32 @@
     <div ng-app="myApp" ng-controller="myController">
       <nav class="navbar navbar-default navbar-fixed-top">
         <h2>SellerApp</h2>
-        <i class="flaticon-new-order pull-right" ng-click="new()"></i>
+        <i class="flaticon-new-order pull-right" ng-click="selectedCategory=''; amount=-1; new()" confirm="Seguro que desea borrar esta orden y comenzar una nueva?"></i>
         <i class="flaticon-order pull-right" ng-click="selectedCategory=''; amount=0" ng-class="{'active':amount==0}"></i>
         <i class="flaticon-menu pull-right" ng-click="selectedCategory=''; amount=-1" ng-class="{'active':amount==-1}"></i>
       </nav>
       <div id="list" class="row">
         <div class="col-xs-12" ng-repeat="item in items | filter: {category:selectedCategory} | filter:greatherThan(amount)">
           <div class="card row">
-            <div class="col-xs-8">
+            <div class="col-xs-3">
+              <h2>{{item.amount}}</h2>
+            </div>
+            <div class="col-xs-9">
               <span>{{item.name}}</span>
               <span>{{item.price | currency:"Bs. ":0 }} - <b>{{item.amount * item.price | currency:"Bs. ":0}}</b></span>
             </div>
-            <div class="col-xs-4">
-              <h2>{{item.amount}}</h2>
-            </div>
-            <div class="col-xs-12 text-center btn-group">
-              <div class="col-xs-4 btn btn-default" ng-click="set(item, 0)">
-                0
-              </div>
-              <div class="col-xs-4 btn btn-danger" ng-click="set(item, item.amount-1)">
-                -
-              </div>
-              <div class="col-xs-4 btn btn-success" ng-click="set(item, item.amount+1)">
-                +
-              </div>
+            <div class="col-xs-12 text-center">
+              <div class="col-xs-4"><i class="fa fa-2x fa-trash-o text-danger" ng-click="set(item, 0)" confirm="Desea eliminar este elemento por completo de la orden?"></i></div>
+              <div class="col-xs-4"><i class="fa fa-2x fa-minus-square-o text-muted" ng-click="set(item, item.amount-1)"></i></div>
+              <div class="col-xs-4"><i class="fa fa-2x fa-plus-square-o text-primary" ng-click="set(item, item.amount+1)"></i></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-xs-12">
-        <h3>Total:</h3>
-        <h2>{{total | currency:"Bs. ":0 }}</h2>
-      </div>
-      <nav class="navbar navbar-default navbar-fixed-bottom">
+      <nav class="navbar navbar-default navbar-fixed-bottom text-center">
+        <div class="col-xs-12">
+          <span>Total: {{total | currency:"Bs. ":0 }}</span>
+        </div>
         <div class="col-xs-2" ng-repeat="category in categories" ng-class="{'active': category.name==$parent.selectedCategory, 'col-xs-offset-1':$first}" >
           <i ng-class="category.icon" ng-click="$parent.amount=-1; $parent.selectedCategory=category.name"></i>
         </div>
@@ -53,6 +48,9 @@
     </div>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/ng-lodash/build/ng-lodash.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-confirm-modal/angular-confirm.min.js"></script>
     <script src="scripts/app.js"></script>
   </body>
 </html>

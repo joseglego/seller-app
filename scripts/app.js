@@ -1,4 +1,12 @@
-var app = angular.module('myApp', ['ngLodash']);
+var app = angular.module('myApp', ['ngLodash', 'ui.bootstrap', 'angular-confirm']);
+
+app.run([
+  '$confirmModalDefaults',
+  function ($confirmModalDefaults) {
+    $confirmModalDefaults.defaultLabels.ok = 'Si';
+    $confirmModalDefaults.defaultLabels.cancel = 'No';
+  }
+]);
 
 app.controller('myController', [
   '$scope',
